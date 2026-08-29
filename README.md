@@ -702,7 +702,10 @@ SQLite
 
 # Author
 
-**TaskFlow — Task Management System**
+**Rahaf Abumelish**  
+Software Engineer | Full-Stack Web Developer
+
+# TaskFlow — Task Management System
 
 Full-Stack Web Application
 
