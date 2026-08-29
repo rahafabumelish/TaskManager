@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        TaskFlow — Task Manager
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h1>
+                    TaskFlow
+                </h1>
+
+                <span>
+                    Task Manager
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+
+            <a
+                href="#dashboard"
+                class="nav-item active">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="#tasks"
+                class="nav-item">
+
+                <span class="nav-icon">
+                    ✓
+                </span>
+
+                My Tasks
+
+            </a>
+
+
+            <a
+                href="#add"
+                class="nav-item">
+
+                <span class="nav-icon">
+                    ＋
+                </span>
+
+                Add Task
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <div class="tip-card">
+
+                <span class="tip-icon">
+                    ✦
+                </span>
+
+                <div>
+
+                    <strong>
+                        Stay organized
+                    </strong>
+
+                    <p>
+                        Drag tasks to reorder your workflow.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main
+        id="dashboard"
+        class="main-content">
+
+
+        <!-- ================= TOP BAR ================= -->
+
+        <header class="topbar">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    YOUR WORKSPACE
+                </p>
+
+                <h2>
+                    Good day 👋
+                </h2>
+
+            </div>
+
+
+            <a
+                href="#add"
+                class="top-add-button">
+
+                <span>
+                    ＋
+                </span>
+
+                New Task
+
+            </a>
+
+
+        </header>
+
+
+
+        <!-- ================= STATS ================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- Total -->
+
+            <article class="stat-card">
+
+                <div class="stat-icon total-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Tasks
+                    </span>
+
+                    <strong id="total-count">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Active -->
+
+            <article class="stat-card">
+
+                <div class="stat-icon active-icon">
+                    ◷
+                </div>
+
+                <div>
+
+                    <span>
+                        Active
+                    </span>
+
+                    <strong id="active-count">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Completed -->
+
+            <article class="stat-card">
+
+                <div class="stat-icon done-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Completed
+                    </span>
+
+                    <strong id="done-count">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- ================= TASK AREA ================= -->
+
+        <section
+            id="tasks"
+            class="tasks-section">
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+                    <p class="eyebrow">
+                        YOUR LIST
+                    </p>
+
+                    <h2>
+                        My Tasks
+                    </h2>
+
+                </div>
+
+
+                <p
+                    id="status"
+                    class="status">
+
+                    Connecting to the API...
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- FILTERS -->
+
+            <div class="task-toolbar">
+
+
+                <div class="filters">
+
+
+                    <button
+                        class="filter-button active"
+                        data-filter="all">
+
+                        All
+
+                    </button>
+
+
+                    <button
+                        class="filter-button"
+                        data-filter="active">
+
+                        Active
+
+                    </button>
+
+
+                    <button
+                        class="filter-button"
+                        data-filter="completed">
+
+                        Completed
+
+                    </button>
+
+
+                </div>
+
+
+                <div class="drag-hint">
+                    ↕ Drag to reorder
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TASK LIST -->
+
+            <div
+                id="task-list"
+                class="task-list"
+                aria-live="polite">
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= ADD TASK ================= -->
+
+        <section
+            id="add"
+            class="add-section">
+
+
+            <div class="add-card">
+
+
+                <div class="add-header">
+
+
+                    <div class="add-icon">
+                        ＋
+                    </div>
+
+
+                    <div>
+
+                        <p class="eyebrow">
+                            CREATE SOMETHING NEW
+                        </p>
+
+                        <h2>
+                            Add a Task
+                        </h2>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ADD FORM -->
+
+                <form id="add-form">
+
+
+                    <div class="form-row">
+
+                        <label for="title">
+                            Task title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            placeholder="What needs to be done?"
+                            maxlength="100"
+                            required>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <label for="priority">
+                            Priority
+                        </label>
+
+                        <select
+                            id="priority"
+                            required>
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                            <option
+                                value="Medium"
+                                selected>
+
+                                Medium
+
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="submit-button">
+
+                        <span>
+                            ＋
+                        </span>
+
+                        Add Task
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="footer">
+
+
+            <div class="footer-main">
+
+
+                <!-- Brand -->
+
+                <div class="footer-brand-section">
+
+
+                    <div class="footer-logo">
+
+
+                        <div class="footer-logo-icon">
+                            ✓
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                TaskFlow
+                            </h3>
+
+                            <span>
+                                Task Manager
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <p>
+                        Simple, organized and productive task management.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- Quick Links -->
+
+                <div class="footer-links">
+
+
+                    <h4>
+                        Quick Links
+                    </h4>
+
+
+                    <a href="#dashboard">
+                        Dashboard
+                    </a>
+
+
+                    <a href="#tasks">
+                        My Tasks
+                    </a>
+
+
+                    <a href="#add">
+                        Add Task
+                    </a>
+
+
+                </div>
+
+
+
+                <!-- Project -->
+
+                <div class="footer-project">
+
+
+                    <h4>
+                        TaskFlow
+                    </h4>
+
+
+                    <p>
+                        Built to help you organize your work,
+                        track your progress and stay focused.
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Footer Bottom -->
+
+            <div class="footer-bottom">
+
+
+                <span>
+                    © 2026 TaskFlow. All rights reserved.
+                </span>
+
+
+                <span>
+                    Built with Frontend: HTML, CSS & JavaScript •
+                    Backend: ASP.NET Core & C# •
+                    REST API • SQLite
+                </span>
+
+
+            </div>
+
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>
