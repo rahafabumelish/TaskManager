@@ -711,6 +711,6 @@ Full-Stack Web Application
 
 * Frontend: HTML5, CSS3, JavaScript
 * Backend: ASP.NET Core Web API & C#
-* Database:*SQLite
+* Database: SQLite
 * ORM: Entity Framework Core
 * API Documentation: Swagger / OpenAPI
